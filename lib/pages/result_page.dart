@@ -101,12 +101,16 @@ class ResultPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
 
-                // Tombol main ulang
+                // Tombol ulangi kuis — bersihkan semua route sebelumnya
                 AppButton(
-                  label: 'Main Lagi',
+                  label: 'Ulangi Kuis',
                   onPressed: () {
                     context.read<QuizState>().reset();
-                    Navigator.pushReplacementNamed(context, '/');
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/',
+                      (route) => false, // hapus semua route di stack
+                    );
                   },
                 ),
               ],
