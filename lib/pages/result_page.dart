@@ -7,10 +7,38 @@ import '../widgets/app_button.dart';
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key});
 
+  // Tentukan ikon, warna, dan pesan berdasarkan persentase skor
+  _ResultFeedback _getFeedback(double percent) {
+    if (percent >= 0.75) {
+      return _ResultFeedback(
+        icon: Icons.emoji_events_rounded,
+        color: Colors.amber,
+        message: 'Luar biasa! Kamu menguasai materi ini dengan sangat baik.',
+      );
+    } else if (percent >= 0.50) {
+      return _ResultFeedback(
+        icon: Icons.thumb_up_rounded,
+        color: Colors.blue,
+        message: 'Bagus! Terus semangat belajar Flutter dan Dart.',
+      );
+    } else {
+      return _ResultFeedback(
+        icon: Icons.refresh_rounded,
+        color: Colors.redAccent,
+        message: 'Jangan menyerah! Coba lagi dan pelajari materinya.',
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final quiz = context.watch<QuizState>();
     final textTheme = Theme.of(context).textTheme;
+    final iconSize = MediaQuery.of(context).size.shortestSide * 0.22;
+    final percent = quiz.totalQuestions == 0
+        ? 0.0
+        : quiz.score / quiz.totalQuestions;
+    final feedback = _getFeedback(percent);
 
     return Scaffold(
       body: SafeArea(
@@ -23,11 +51,8 @@ class ResultPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.emoji_events_rounded,
-                  size: 80,
-                  color: Colors.amber,
-                ),
+                // Ikon dinamis sesuai skor
+                Icon(feedback.icon, size: iconSize, color: feedback.color),
                 const SizedBox(height: 24),
 
                 // Nama pengguna
@@ -40,8 +65,9 @@ class ResultPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
 
+                // Pesan dinamis sesuai skor
                 Text(
-                  'Kamu telah menyelesaikan kuis.',
+                  feedback.message,
                   style: textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -90,4 +116,17 @@ class ResultPage extends StatelessWidget {
       ),
     );
   }
+}
+
+// Data class sederhana untuk bundel ikon + warna + pesan
+class _ResultFeedback {
+  final IconData icon;
+  final Color color;
+  final String message;
+
+  const _ResultFeedback({
+    required this.icon,
+    required this.color,
+    required this.message,
+  });
 }
