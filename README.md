@@ -32,4 +32,4 @@
 ### Credit Aset
 - Font: Plus Jakarta Sans (Google Fonts) - [link](https://fonts.google.com/specimen/Plus+Jakarta+Sans?preview.script=Latn)
 - Ilustrasi: Undraw (unDraw/Freepik/dll) - [link](https://undraw.co/search/study)
--Ikon: [Material Icons](https://fonts.google.com/icons) 
+-Ikon: Google Ikon  - [link](https://fonts.google.com/icons) 
