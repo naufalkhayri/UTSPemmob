@@ -59,9 +59,11 @@ class ResultPage extends StatelessWidget {
                   Icon(feedback.icon, size: iconSize, color: feedback.color),
                   const SizedBox(height: 24),
 
-                  // Nama pengguna
+                  // Nama pengguna — sapaan menyesuaikan skor
                   Text(
-                    'Selamat, ${quiz.name}!',
+                    percent >= 0.50
+                        ? 'Selamat, ${quiz.name}!'
+                        : 'Semangat, ${quiz.name}!',
                     style: textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -93,7 +95,7 @@ class ResultPage extends StatelessWidget {
                           Text('Skor Akhir', style: textTheme.titleMedium),
                           const SizedBox(height: 8),
                           Text(
-                            'Skor: ${quiz.score} / ${quiz.totalQuestions}',
+                            '${quiz.score} / ${quiz.totalQuestions}',
                             style: textTheme.displaySmall?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).colorScheme.primary,
@@ -157,9 +159,9 @@ class ResultPage extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    // Teks soal (disingkat maks 60 karakter)
+                                    // Teks soal — ditampilkan penuh
                                     Text(
-                                      '${i + 1}. ${question.text.length > 60 ? '${question.text.substring(0, 60)}…' : question.text}',
+                                      '${i + 1}. ${question.text}',
                                       style: textTheme.bodyMedium?.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),

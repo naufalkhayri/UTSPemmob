@@ -79,16 +79,16 @@ class QuizPage extends StatelessWidget {
                 // ── Tombol navigasi ────────────────────────────────────────
                 Row(
                   children: [
-                    Expanded(
-                      child: AppButton(
-                        label: 'Sebelumnya',
-                        // nonaktif di soal pertama
-                        onPressed: quiz.isFirst
-                            ? null
-                            : () => context.read<QuizState>().previous(),
+                    // Tombol sebelumnya — disembunyikan di soal pertama
+                    if (!quiz.isFirst) ...[
+                      Expanded(
+                        child: AppButton(
+                          label: 'Sebelumnya',
+                          onPressed: () => context.read<QuizState>().previous(),
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
+                      const SizedBox(width: 12),
+                    ],
                     Expanded(
                       child: AppButton(
                         label: quiz.isLast ? 'Selesai' : 'Berikutnya',
