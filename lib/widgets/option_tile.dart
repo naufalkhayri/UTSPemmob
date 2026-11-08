@@ -42,16 +42,15 @@ class OptionTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Lingkaran huruf
+            // Lingkaran huruf — ukuran mengikuti textScaleFactor perangkat
             CircleAvatar(
-              radius: 14,
+              radius: MediaQuery.of(context).textScaler.scale(14),
               backgroundColor: isSelected
                   ? colorScheme.primary
                   : colorScheme.surfaceContainerHighest,
               child: Text(
                 letter,
-                style: TextStyle(
-                  fontSize: 12,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: isSelected
                       ? colorScheme.onPrimary

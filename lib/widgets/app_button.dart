@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: Text(label, style: const TextStyle(fontSize: 16)),
+        child: Text(label, style: Theme.of(context).textTheme.labelLarge),
       ),
     );
   }

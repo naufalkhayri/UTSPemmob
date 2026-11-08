@@ -84,9 +84,9 @@ class ResultPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 28,
-                        horizontal: 40,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 24,
+                        horizontal: MediaQuery.of(context).size.width * 0.08,
                       ),
                       child: Column(
                         children: [
